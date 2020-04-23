@@ -26,7 +26,36 @@ add_filter( 'ft_of_sanitize_password', 'sanitize_text_field' );
 
 function ft_of_sanitize_textarea(  $input) {
 	global $allowedposttags;
-	$output = wp_kses( $input, $allowedposttags);
+	$output = wp_kses( $input, $allowedposttags + array(
+		'iframe' => array(
+			'allowfullscreen' => array(),
+			'frameborder' => array(),
+			'src'    => array(),
+			'height' => array(),
+			'width'  => array()
+		),
+		'object' => array(
+			'allowfullscreen' => array(),
+			'frameborder' => array(),
+			'height' => array(),
+			'width'  => array()
+		),
+		'param' => array(
+			'frameborder' => array(),
+			'name'  => array(),
+			'value' => array()
+		),
+		'embed' => array(
+			'allowfullscreen'   => array(),
+			'src'               => array(),
+			'frameborder'       => array(),
+			'type'              => array(),
+			'allowfullscreen'   => array(),
+			'allowscriptaccess' => array(),
+			'height' => array(),
+			'width'  => array()
+		)
+	));
 	return $output;
 }
 

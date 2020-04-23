@@ -23,7 +23,7 @@ get_header(); ?>
 <div class="container"><div class="row"> 
 	<div id="primary" class="content-area">
 		<div id="videos-container">
-		
+		<div class="video-cover clearfix">
 			<?php
 						
 				if ( get_query_var('paged') )
@@ -62,6 +62,7 @@ get_header(); ?>
 					
 		
 			<?php endwhile; ?>
+		</div>
 			<div class="col-md-12">
 				<?php kriesi_pagination(); ?>
 			</div>

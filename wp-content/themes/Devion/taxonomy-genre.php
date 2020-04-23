@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<div id="videos-container">
-
+		<div class="video-cover clearfix">
 		<?php if ( have_posts() ) : ?>
 
 			
@@ -44,7 +44,7 @@ get_header(); ?>
 					</div>
 
 			<?php endwhile; ?>
-
+			</div>
 			
 				<?php kriesi_pagination(); ?>
 			

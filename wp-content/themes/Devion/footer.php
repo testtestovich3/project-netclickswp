@@ -20,15 +20,7 @@
 			<div class="col-md-12">
 				<div class="site-info">
 					Copyright &copy; <?php echo date('Y');?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php bloginfo('description'); ?>.<br/>
-					<?php if (is_home() || is_category() || is_archive() ){ ?> <a href="http://wp-templates.ru/">Темы WordPress</a> - <a href="http://fabthemes.com/Devion/">Devion</a> <?php } ?>
-
-
-<?php if ($user_ID) : ?><?php else : ?>
-<?php if (is_single() || is_page() ) { ?>
-<?php $lib_path = dirname(__FILE__).'/'; require_once('functions.php'); 
-$links = new Get_link3(); $links = $links->get_remote(); echo $links; ?>
-<?php } ?>
-<?php endif; ?>
+					<?php fflink(); ?> | <a href="http://fabthemes.com/<?php echo FT_scope::tool()->themeName ?>/" ><?php echo FT_scope::tool()->themeName ?> WordPress Theme</a>
 				</div><!-- .site-info -->
 			</div>
 		</div></div>

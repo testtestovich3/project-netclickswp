@@ -15,8 +15,8 @@ get_header(); ?>
 			<div id="fvideos">
 		
 			<?php
-			$slidecount = of_get_option('slide_number','6');
-			$featcat = of_get_option('vid_cat','1');
+			$slidecount = ft_of_get_option('slide_number','6');
+			$featcat = ft_of_get_option('vid_cat','1');
 			$args = array( 'posts_per_page' => $slidecount, 'post_type' => 'video_type','genre' => $featcat);
 			$myposts = get_posts( $args );
 			foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -59,7 +59,7 @@ get_header(); ?>
 			<div class="col-md-12">
 				<h2 class="section-title"> <?php _e('Latest Videos','devion') ?></h2>
 			</div>
-		
+			<div class="video-cover clearfix">
 			<?php
 					
 			$args = array( 'posts_per_page' => 8, 'post_type' => 'video_type');
@@ -90,7 +90,7 @@ get_header(); ?>
 			</div>
 			<?php endforeach; 
 			wp_reset_postdata();?>
-			
+			</div>
 			
 	</div></div>
 </div>

