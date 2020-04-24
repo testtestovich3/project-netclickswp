@@ -57,12 +57,12 @@ get_header(); ?>
 	<div class="container"><div class="row">
 			
 			<div class="col-md-12">
-				<h2 class="section-title"> <?php _e('Latest Videos','devion') ?></h2>
+				<h2 class="section-title"> <?php _e('Популярные фильмы','devion') ?></h2>
 			</div>
 			<div class="video-cover clearfix">
 			<?php
 					
-			$args = array( 'posts_per_page' => 8, 'post_type' => 'video_type');
+			$args = array( 'posts_per_page' => 4, 'post_type' => 'video_type');
 			$myposts = get_posts( $args );
 			foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 			<div class="col-md-3 col-sm-6 ">
@@ -100,7 +100,7 @@ get_header(); ?>
 <div id="latest-posts">
 	<div class="container"><div class="row">
 			<div class="col-md-12">
-				<h2 class="section-title"> <?php _e('Latest Articles','devion') ?></h2>
+				<h2 class="section-title"> <?php _e('Последние новости','devion') ?></h2>
 			</div>
 		
 		<?php
